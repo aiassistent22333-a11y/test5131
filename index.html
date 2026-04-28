@@ -24,7 +24,7 @@
                         brand: {
                             dark: '#0A0A0A',
                             graphite: '#161616',
-                            accent: '#C5A059', // Champagne Gold
+                            accent: '#E21E47', // Crimson/Magenta from screenshot
                             muted: '#A1A1AA',
                         }
                     },
@@ -69,14 +69,14 @@
             90% { transform:translate(-10%,10%) }
         }
 
-        /* Shimmer Animation for Gold Elements */
+        /* Shimmer Animation for Accent Elements */
         .shimmer-accent {
             background: linear-gradient(
                 to right,
-                #C5A059 20%,
+                #E21E47 20%,
                 #FFF 40%,
                 #FFF 60%,
-                #C5A059 80%
+                #E21E47 80%
             );
             background-size: 200% auto;
             color: #000;
@@ -84,7 +84,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shimmer 6s linear infinite;
-            padding-right: 0.15em;
+            padding-right: 0.15em; 
         }
 
         /* Shimmer Animation for Grey/White Elements */
@@ -128,7 +128,7 @@
         }
 
         .mesh-gradient {
-            background: radial-gradient(at 0% 0%, rgba(197, 160, 89, 0.05) 0, transparent 40%),
+            background: radial-gradient(at 0% 0%, rgba(226, 30, 71, 0.05) 0, transparent 40%),
                         radial-gradient(at 100% 100%, rgba(30, 41, 59, 0.2) 0, transparent 40%);
         }
 
@@ -141,7 +141,7 @@
 
         .glass-card:hover {
             background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(197, 160, 89, 0.2);
+            border-color: rgba(226, 30, 71, 0.2);
             transform: translateY(-5px);
             box-shadow: 0 20px 40px -20px rgba(0,0,0,0.5);
         }
@@ -186,7 +186,7 @@
         #custom-cursor {
             width: 12px;
             height: 12px;
-            background: rgba(197, 160, 89, 0.6);
+            background: rgba(226, 30, 71, 0.6);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
@@ -202,16 +202,16 @@
 
         /* Risk & Growth Visual Triggers */
         .risk-glow { animation: pulse-red 3s infinite; }
-        .growth-glow { animation: pulse-gold 4s infinite; }
+        .growth-glow { animation: pulse-accent 4s infinite; }
 
         @keyframes pulse-red {
             0%, 100% { color: rgba(239, 68, 68, 0.5); text-shadow: 0 0 0px rgba(239, 68, 68, 0); }
             50% { color: rgba(239, 68, 68, 1); text-shadow: 0 0 15px rgba(239, 68, 68, 0.4); }
         }
 
-        @keyframes pulse-gold {
-            0%, 100% { color: rgba(197, 160, 89, 0.6); text-shadow: 0 0 0px rgba(197, 160, 89, 0); }
-            50% { color: rgba(197, 160, 89, 1); text-shadow: 0 0 25px rgba(197, 160, 89, 0.6); }
+        @keyframes pulse-accent {
+            0%, 100% { color: rgba(226, 30, 71, 0.6); text-shadow: 0 0 0px rgba(226, 30, 71, 0); }
+            50% { color: rgba(226, 30, 71, 1); text-shadow: 0 0 25px rgba(226, 30, 71, 0.6); }
         }
 
         @keyframes float-3d {
@@ -220,6 +220,12 @@
             100% { transform: translateY(0px) rotate(0deg); }
         }
         .float-anim { animation: float-3d 10s ease-in-out infinite; }
+
+        /* Soft Grey Highlight for the word "Репко" */
+        .soft-glow-grey {
+            color: rgba(255, 255, 255, 0.2); 
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.1), 0 0 50px rgba(255, 255, 255, 0.05);
+        }
     </style>
 </head>
 <body class="bg-brand-dark text-white font-sans selection:bg-brand-accent selection:text-brand-dark grain overflow-x-hidden">
@@ -237,14 +243,14 @@
         <div class="shape-3d top-[15%] right-[10%] float-anim" id="shape-1">
             <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="100" cy="100" r="80" stroke="white" stroke-width="0.5" stroke-opacity="0.2"/>
-                <path d="M100 20C144.183 20 180 55.8172 180 100C180 144.183 144.183 180 100 180" stroke="#C5A059" stroke-width="2" stroke-linecap="round"/>
+                <path d="M100 20C144.183 20 180 55.8172 180 100C180 144.183 144.183 180 100 180" stroke="#E21E47" stroke-width="2" stroke-linecap="round"/>
                 <rect x="60" y="60" width="80" height="80" rx="10" transform="rotate(45 100 100)" fill="white" fill-opacity="0.03" stroke="white" stroke-opacity="0.1"/>
             </svg>
         </div>
         <div class="shape-3d bottom-[20%] left-[5%] float-anim" style="animation-delay: -2s;" id="shape-2">
             <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M75 10L135 110L15 110L75 10Z" stroke="white" stroke-width="0.5" stroke-opacity="0.2"/>
-                <circle cx="75" cy="75" r="40" fill="#C5A059" fill-opacity="0.05" stroke="#C5A059" stroke-width="0.5"/>
+                <circle cx="75" cy="75" r="40" fill="#E21E47" fill-opacity="0.05" stroke="#E21E47" stroke-width="0.5"/>
             </svg>
         </div>
     </div>
@@ -290,7 +296,7 @@
                     Верните контроль через «Цикл Репко». Локализуем скрытые потери и выстраиваем прозрачную модель прибыли за 3 месяца.
                 </p>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-8 items-start">
-                    <button onclick="window.location.href='#cta'" class="magnetic-btn px-10 py-5 bg-brand-accent text-brand-dark font-bold rounded-xl hover:shadow-[0_0_30px_rgba(197,160,89,0.3)] transition-all uppercase text-xs tracking-widest clickable">
+                    <button onclick="window.location.href='#cta'" class="magnetic-btn px-10 py-5 bg-brand-accent text-white font-bold rounded-xl hover:shadow-[0_0_30px_rgba(226,30,71,0.3)] transition-all uppercase text-xs tracking-widest clickable">
                         Записаться на диагностику
                     </button>
                     <div class="flex items-center space-x-4 text-white/30 pt-4 sm:pt-0">
@@ -437,22 +443,22 @@
                 </div>
                 <div class="lg:w-1/2 grid grid-cols-2 gap-4 reveal">
                     <div class="space-y-4 pt-12">
-                        <div class="bg-brand-dark/5 p-8 rounded-[2rem] border border-black/5 hover:bg-brand-dark hover:text-white transition-all duration-500 clickable">
-                            <p class="text-xs font-bold uppercase tracking-widest mb-2 opacity-40">Retail</p>
+                        <div class="bg-brand-dark/5 p-8 rounded-[2rem] border border-black/5 hover:bg-brand-accent hover:text-white transition-all duration-500 clickable group">
+                            <p class="text-xs font-bold uppercase tracking-widest mb-2 opacity-40 group-hover:opacity-100">Retail</p>
                             <p class="text-md font-bold leading-tight">Оптимизация товарных матриц</p>
                         </div>
-                        <div class="bg-brand-dark/5 p-8 rounded-[2rem] border border-black/5 hover:bg-brand-dark hover:text-white transition-all duration-500 clickable">
-                            <p class="text-xs font-bold uppercase tracking-widest mb-2 opacity-40">Production</p>
+                        <div class="bg-brand-dark/5 p-8 rounded-[2rem] border border-black/5 hover:bg-brand-accent hover:text-white transition-all duration-500 clickable group">
+                            <p class="text-xs font-bold uppercase tracking-widest mb-2 opacity-40 group-hover:opacity-100">Production</p>
                             <p class="text-md font-bold leading-tight">Снижение издержек на 30%</p>
                         </div>
                     </div>
                     <div class="space-y-4">
-                        <div class="bg-brand-dark/5 p-8 rounded-[2rem] border border-black/5 hover:bg-brand-dark hover:text-white transition-all duration-500 clickable">
-                            <p class="text-xs font-bold uppercase tracking-widest mb-2 opacity-40">Services</p>
+                        <div class="bg-brand-dark/5 p-8 rounded-[2rem] border border-black/5 hover:bg-brand-accent hover:text-white transition-all duration-500 clickable group">
+                            <p class="text-xs font-bold uppercase tracking-widest mb-2 opacity-40 group-hover:opacity-100">Services</p>
                             <p class="text-md font-bold leading-tight">Оцифровка юнит-экономики</p>
                         </div>
-                        <div class="bg-brand-dark/5 p-8 rounded-[2rem] border border-black/5 hover:bg-brand-dark hover:text-white transition-all duration-500 clickable">
-                            <p class="text-xs font-bold uppercase tracking-widest mb-2 opacity-40">Ecommerce</p>
+                        <div class="bg-brand-dark/5 p-8 rounded-[2rem] border border-black/5 hover:bg-brand-accent hover:text-white transition-all duration-500 clickable group">
+                            <p class="text-xs font-bold uppercase tracking-widest mb-2 opacity-40 group-hover:opacity-100">Ecommerce</p>
                             <p class="text-md font-bold leading-tight">Управление маржой холдингов</p>
                         </div>
                     </div>
@@ -505,7 +511,7 @@
                                     <p class="text-2xl font-display font-black text-white tracking-tighter growth-glow">+32% к EBITDA</p>
                                 </div>
                                 <div class="mt-10 pt-4">
-                                    <a onclick="window.open(CONFIG.telegramLink, '_blank')" class="w-full flex items-center justify-center space-x-3 py-4 border border-brand-accent/30 rounded-2xl hover:bg-brand-accent hover:text-brand-dark transition-all duration-500 uppercase text-[10px] tracking-widest font-bold clickable">
+                                    <a onclick="window.open(CONFIG.telegramLink, '_blank')" class="w-full flex items-center justify-center space-x-3 py-4 border border-brand-accent/30 rounded-2xl hover:bg-brand-accent hover:text-white transition-all duration-500 uppercase text-[10px] tracking-widest font-bold clickable">
                                         <i data-lucide="send" class="w-4 h-4"></i>
                                         <span>Обсудить карту рисков</span>
                                     </a>
@@ -547,7 +553,7 @@
                     </div>
                 </div>
                 <div class="flex justify-center md:justify-start relative z-10">
-                    <button class="px-16 py-6 bg-white text-brand-dark font-black rounded-2xl hover:bg-brand-accent transition-all uppercase text-[11px] tracking-[0.2em] shadow-xl clickable">
+                    <button class="px-16 py-6 bg-brand-accent text-white font-black rounded-2xl hover:bg-white hover:text-brand-dark transition-all uppercase text-[11px] tracking-[0.2em] shadow-xl clickable">
                         Обсудить проект
                     </button>
                 </div>
@@ -571,7 +577,7 @@
                         <h2 class="text-4xl md:text-5xl font-display font-black mb-10 uppercase tracking-tightest shimmer-accent">Контакты</h2>
                         <div class="space-y-8">
                             <div class="flex items-center space-x-6 group clickable" onclick="window.location.href='tel:' + CONFIG.whatsappLink">
-                                <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 flex items-center justify-center group-hover:bg-brand-accent group-hover:text-brand-dark transition-all duration-500">
+                                <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 flex items-center justify-center group-hover:bg-brand-accent group-hover:text-white transition-all duration-500">
                                     <i data-lucide="phone" class="w-6 h-6"></i>
                                 </div>
                                 <div>
@@ -580,7 +586,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-6 group clickable" onclick="window.open(CONFIG.telegramLink, '_blank')">
-                                <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 flex items-center justify-center group-hover:bg-brand-accent group-hover:text-brand-dark transition-all duration-500">
+                                <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 flex items-center justify-center group-hover:bg-brand-accent group-hover:text-white transition-all duration-500">
                                     <i data-lucide="send" class="w-6 h-6"></i>
                                 </div>
                                 <div>
@@ -589,7 +595,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-6 group clickable" onclick="window.location.href='mailto:' + CONFIG.email">
-                                <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 flex items-center justify-center group-hover:bg-brand-accent group-hover:text-brand-dark transition-all duration-500">
+                                <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 flex items-center justify-center group-hover:bg-brand-accent group-hover:text-white transition-all duration-500">
                                     <i data-lucide="mail" class="w-6 h-6"></i>
                                 </div>
                                 <div>
@@ -642,7 +648,7 @@
         // Reveal Animations with Intersection Observer
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -100px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
