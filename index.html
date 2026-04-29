@@ -5,134 +5,168 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Наталья Репко — Управляемая экономика бизнеса</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Выбранная шрифтовая пара: Montserrat (Headers) и Inter (Body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent-red: #8B0000;
-            --accent-glow: rgba(139, 0, 0, 0.4);
-            --bg-dark: #050505;
-            --deep-indigo: #0F0C29;
-            --muted-purple: #240B36;
-            --font-serif: 'Cormorant Garamond', serif;
-            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --mouse-x: 50%;
-            --mouse-y: 50%;
+            /* Притемненные золотые оттенки для большей глубины */
+            --primary-gold: #A68A2B; 
+            --accent-gold: #B8860B;
+            --deep-gold: #8A6508;
+            --bg-dark: #020202;
+            --glass-bg: rgba(10, 10, 10, 0.8);
+            /* Монохромная золотая гамма для рамок */
+            --irid-1: #8A6508; 
+            --irid-2: #A68A2B; 
+            --irid-3: #735400; 
         }
 
         body {
-            font-family: var(--font-sans);
             background-color: var(--bg-dark);
-            color: #fff;
+            background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #000000 100%);
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            letter-spacing: -0.03em;
+            /* Оптимизация рендеринга текста */
+            text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3, .serif-font {
-            font-family: var(--font-serif);
+        h1, h2, h3, .font-serif {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
         }
 
-        /* Film Grain Effect Overlay */
-        .noise-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            pointer-events: none;
-            opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        /* Complex Mesh Gradients for Atmospheric Lighting with Parallax */
-        .glow-overlay {
-            position: fixed;
-            top: -10%;
-            left: -10%;
-            width: 120%;
-            height: 120%;
-            background-color: var(--bg-dark);
-            background-image: 
-                radial-gradient(at 20% 20%, rgba(139, 0, 0, 0.15) 0px, transparent 45%),
-                radial-gradient(at 80% 15%, rgba(15, 12, 41, 0.45) 0px, transparent 55%),
-                radial-gradient(at 50% 85%, rgba(36, 11, 54, 0.4) 0px, transparent 50%),
-                radial-gradient(at 95% 90%, rgba(139, 0, 0, 0.12) 0px, transparent 40%),
-                radial-gradient(at 10% 90%, rgba(15, 12, 41, 0.3) 0px, transparent 45%);
-            z-index: -2;
-            transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        /* Interactive Mouse Glow */
-        .mouse-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 1000px;
-            height: 1000px;
-            background: radial-gradient(circle, rgba(139, 0, 0, 0.07) 0%, transparent 70%);
-            border-radius: 100%;
-            pointer-events: none;
-            z-index: -1;
-            transform: translate(calc(var(--mouse-px, 0px) - 500px), calc(var(--mouse-py, 0px) - 500px));
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            filter: blur(80px);
-        }
-
-        /* Decorative Coordinate Grid with Parallax */
-        .coordinate-grid {
-            background-size: 60px 60px;
-            background-image:
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        /* Glassmorphism Styles */
+        /* --- Iridescent Glass 4.0 Engine (Optimized) --- */
         .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
-            border-radius: 2.5rem;
-            transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid transparent;
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+            background-image: linear-gradient(var(--glass-bg), var(--glass-bg)), 
+                              linear-gradient(135deg, var(--irid-1), var(--irid-2), var(--irid-3));
+            
+            box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.95);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.8s ease;
+            position: relative;
+            perspective: 1000px;
+            /* GPU Acceleration */
+            transform: translateZ(0);
+            will-change: transform;
         }
 
-        .glass-card:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.12);
+        /* Oil Slick Sheen Optimized */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            background: conic-gradient(
+                from 180deg at 50% 50%,
+                transparent 0%,
+                rgba(138, 101, 8, 0.06) 20%,
+                rgba(166, 138, 43, 0.06) 40%,
+                rgba(115, 84, 0, 0.06) 60%,
+                transparent 80%
+            );
+            animation: rotate-sheen 12s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+            will-change: transform;
         }
 
-        .glass-card-light {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 2.5rem;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        @keyframes rotate-sheen {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        /* Animated Text Shimmer */
-        .text-gradient-shimmer {
-            background: linear-gradient(90deg, #fff 0%, var(--accent-red) 25%, #fff 50%, var(--accent-red) 75%, #fff 100%);
+        /* Bento Grid Specifics */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* Holographic Text */
+        .holographic-text {
+            background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, var(--primary-gold) 25%, var(--accent-gold) 50%, var(--deep-gold) 75%, rgba(255,255,255,0.7) 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shimmer 6s linear infinite;
+            animation: holo-flow 6s linear infinite;
+            will-change: background-position;
         }
 
-        @keyframes shimmer {
+        @keyframes holo-flow {
             to { background-position: 200% center; }
         }
 
-        .bordeaux-glow {
-            box-shadow: 0 0 50px 10px var(--accent-glow);
+        /* --- Background Infrastructure (Optimized) --- */
+        #neural-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.5;
+            transform: translateZ(0);
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0;
+            width: 200%; height: 200%;
+            background-image: 
+                linear-gradient(rgba(166, 138, 43, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(166, 138, 43, 0.02) 1px, transparent 1px);
+            background-size: 80px 80px;
+            transform: perspective(1000px) rotateX(65deg) translateY(-30%) translateZ(0);
+            z-index: 0;
+            animation: grid-move 45s linear infinite;
+            will-change: transform;
+        }
+
+        @keyframes grid-move {
+            0% { transform: perspective(1000px) rotateX(65deg) translateY(0); }
+            100% { transform: perspective(1000px) rotateX(65deg) translateY(80px); }
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(140px);
+            z-index: 0;
+            border-radius: 50%;
+            will-change: transform;
+            opacity: 0.12;
+            transform: translateZ(0);
+            animation: blob-float 35s ease-in-out infinite alternate;
+        }
+
+        @keyframes blob-float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(5%, 10%) scale(1.1); }
+            100% { transform: translate(-5%, -5%) scale(0.95); }
+        }
+
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url('data:image/svg+xml,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)"/></svg>');
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
         }
 
         .reveal.active {
@@ -140,398 +174,439 @@
             transform: translateY(0);
         }
 
-        .hero-gradient {
-            background: linear-gradient(to bottom, transparent, var(--bg-dark));
+        .gold-text {
+            background: linear-gradient(135deg, #A68A2B 0%, #D4AF37 50%, #8A6508 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--accent-red); }
+        .btn-primary {
+            background: linear-gradient(45deg, #8A6508, #A68A2B);
+            color: #000;
+            font-weight: 900;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 10;
+        }
         
-        .btn-round {
-            border-radius: 2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-round:hover {
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: translateY(-2px);
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(138, 101, 8, 0.4);
         }
 
-        .line-icon {
-            width: 32px;
-            height: 32px;
-            stroke: var(--accent-red);
-            stroke-width: 1;
-            fill: none;
-            margin-bottom: 1.5rem;
-        }
-
-        .step-indicator {
-            width: 40px;
-            height: 1px;
-            background: var(--accent-red);
-            margin-bottom: 2rem;
-            opacity: 0.5;
+        .metric-badge {
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(166, 138, 43, 0.3);
+            padding: 1.25rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            z-index: 50;
+            transform: translateZ(0);
         }
     </style>
 </head>
-<body class="selection:bg-red-900 selection:text-white">
+<body class="bg-black">
 
     <div class="noise-overlay"></div>
-    <div class="glow-overlay" id="glow-parallax"></div>
-    <div class="mouse-glow" id="mouse-glow"></div>
+    <div class="bg-grid"></div>
+    <canvas id="neural-canvas"></canvas>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center backdrop-blur-xl border-b border-white/5 glass-card !bg-black/10 !rounded-none !border-t-0 !border-x-0">
-        <div class="text-xl font-bold tracking-tighter italic serif-font">REPKON.</div>
-        <div class="hidden md:flex space-x-8 text-xs uppercase tracking-[0.2em] text-gray-400">
-            <a href="#context" class="hover:text-white transition">Проблема</a>
-            <a href="#methodology" class="hover:text-white transition">Методология</a>
-            <a href="#services" class="hover:text-white transition">Услуги</a>
-            <a href="#about" class="hover:text-white transition">О Наталье</a>
+    <!-- Background Blobs -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="blob w-[800px] h-[800px] bg-amber-900/15 top-[-20%] right-[-15%]"></div>
+        <div class="blob w-[700px] h-[700px] bg-amber-950/10 bottom-[-10%] left-[-15%]" style="animation-delay: -10s;"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-card !bg-opacity-30 border-none rounded-none backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="text-2xl font-black gold-text tracking-tighter uppercase" style="font-family: 'Montserrat', sans-serif; letter-spacing: -0.02em;">НАТАЛЬЯ РЕПКО</div>
+            <div class="hidden md:flex space-x-10 text-xs uppercase tracking-normal font-black">
+                <a href="#about" class="hover:text-amber-500 transition-colors">Об эксперте</a>
+                <a href="#cycle" class="hover:text-amber-500 transition-colors">Методология</a>
+                <a href="#services" class="hover:text-amber-500 transition-colors">Услуги</a>
+                <a href="https://t.me/" target="_blank" rel="noopener noreferrer" class="gold-text border-b border-amber-500/30">Связаться</a>
+            </div>
         </div>
-        <a href="#cta" class="text-xs uppercase tracking-widest px-6 py-2 border border-white/20 hover:bg-white hover:text-black transition duration-500 btn-round">Записаться</a>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="relative min-h-screen flex items-center pt-16 overflow-hidden">
-        <div class="container mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-12 items-center relative z-10">
-            <div class="reveal">
-                <h1 class="text-6xl md:text-8xl font-medium leading-tight mb-8 tracking-tight">
-                    Управляемая <br><span class="text-gradient-shimmer italic">экономика</span> бизнеса
-                </h1>
-                <p class="text-lg md:text-xl text-gray-400 max-w-lg mb-10 font-light leading-relaxed font-sans">
-                    Для собственников, у которых оборот есть, а прибыль не сходится. Диагностика, аудит, стратегия, внедрение.
-                </p>
-                <div class="p-8 border-l-4 border-red-800 glass-card">
-                    <p class="text-sm text-gray-300 italic font-sans">
-                        Уникальная методология — Цикл Репко. Не консультация с советами, а системная работа с экономикой бизнеса: нахожу, где теряются деньги, и выстраиваю управляемую модель.
-                    </p>
-                </div>
-            </div>
-            <div class="relative reveal delay-200">
-                <div class="aspect-[4/5] bg-neutral-900 glass-card relative overflow-hidden group !rounded-[3.5rem]">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000" 
-                         alt="Наталья Репко" 
-                         class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 transition duration-1000"
-                         onerror="this.src='https://via.placeholder.com/1000x1250/111/fff?text=Natalia+Repko'">
-                    <div class="absolute inset-0 hero-gradient"></div>
-                    <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent"></div>
-                </div>
-                <div class="absolute -bottom-6 -left-6 w-32 h-32 border-l border-b border-red-800 opacity-50"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Block 2: Context Setting (Asymmetrical) -->
-    <section id="context" class="py-20 relative overflow-hidden">
-        <div class="container mx-auto px-6 grid md:grid-cols-12 gap-12 relative z-10">
-            <div class="md:col-span-8 reveal">
-                <h2 class="text-4xl md:text-7xl font-medium mb-12 tracking-tight leading-tight">
-                    Бизнес может работать, расти и выглядеть нормально — и при этом быть экономически <span class="text-gradient-shimmer italic">неуправляемым</span>
-                </h2>
-                
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="p-10 glass-card hover:bg-white/5 transition duration-500 group">
-                        <svg class="line-icon" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                        <h3 class="text-2xl font-medium mb-2">Прибыль ≠ оборот</h3>
-                        <p class="text-gray-500 text-sm group-hover:text-gray-300 transition font-sans">Внешний масштаб не гарантирует реальных денег на счету.</p>
-                    </div>
-                    <div class="p-10 glass-card hover:bg-white/5 transition duration-500 group">
-                        <svg class="line-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
-                        <h3 class="text-2xl font-medium mb-2">Учёт ≠ управление</h3>
-                        <p class="text-gray-500 text-sm group-hover:text-gray-300 transition font-sans">Таблицы без выводов — это просто цифры, а не инструмент.</p>
-                    </div>
-                    <div class="p-10 glass-card hover:bg-white/5 transition duration-500 group">
-                        <svg class="line-icon" viewBox="0 0 24 24"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.2 1.3L3 12l5.9 1.9a2 2 0 0 1 1.3 1.2L12 21l1.9-5.9a2 2 0 0 1 1.2-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.2Z"/></svg>
-                        <h3 class="text-2xl font-medium mb-2">Рост ≠ здоровье</h3>
-                        <p class="text-gray-500 text-sm group-hover:text-gray-300 transition font-sans">Масштабирование хаоса ведет к масштабированию убытков.</p>
-                    </div>
-                    <div class="p-10 glass-card hover:bg-white/5 transition duration-500 group">
-                        <svg class="line-icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10H12V2Z"/><path d="M12 12L2.5 4.5"/><path d="M12 12h10a10 10 0 0 0-10-10v10Z"/></svg>
-                        <h3 class="text-2xl font-medium mb-2">Команда ≠ система</h3>
-                        <p class="text-gray-500 text-sm group-hover:text-gray-300 transition font-sans">Хорошие люди без процессов не спасут экономику бизнеса.</p>
-                    </div>
-                </div>
-
-                <div class="mt-16 p-14 glass-card bg-red-950/10 border-red-900/20 text-left reveal">
-                    <p class="text-xl md:text-2xl font-light text-gray-200 italic font-sans max-w-2xl">
-                        "Я вижу, где бизнес теряет деньги — даже когда это не очевидно изнутри. Выстраиваю решения вокруг прибыли."
-                    </p>
-                </div>
-            </div>
-            
-            <!-- Graphic element on the right -->
-            <div class="hidden md:block md:col-span-4 coordinate-grid border-l border-white/5 opacity-40" id="grid-parallax"></div>
-        </div>
-    </section>
-
-    <!-- Block 3: Methodology (Asymmetrical) -->
-    <section id="methodology" class="py-20 relative bg-neutral-950/20">
-        <div class="container mx-auto px-6 grid md:grid-cols-12 gap-12 relative z-10">
-            <header class="md:col-span-10 reveal mb-8">
-                <h2 class="text-5xl md:text-8xl font-medium tracking-tight mb-8">Как я работаю — <br><span class="text-gradient-shimmer italic">Цикл Репко</span></h2>
-                <p class="text-2xl text-gray-400 font-light max-w-3xl font-sans leading-relaxed">
-                    Авторская методология управления бизнесом через экономику и команду. Система, которая обновляется вместе с ростом вашего бизнеса.
-                </p>
-            </header>
-            <div class="hidden md:block md:col-span-2 relative">
-                <div class="absolute right-0 top-0 h-full w-[0.5px] bg-gradient-to-b from-transparent via-red-800 to-transparent opacity-30"></div>
-            </div>
-
-            <div class="md:col-span-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
-                <!-- Steps with staggered look and Line Art Icons -->
-                <div class="p-10 glass-card group hover:bg-white/5 transition-all duration-500 relative overflow-hidden">
-                    <svg class="line-icon" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                    <h3 class="text-3xl font-medium mb-4 tracking-tight group-hover:text-red-800 transition-colors">Видение</h3>
-                    <p class="text-gray-400 leading-relaxed font-light font-sans">Фиксируем единое понимание собственников: куда идет бизнес и зачем. Устраняем конфликты целей на самом верхнем уровне.</p>
-                </div>
-                <div class="p-10 glass-card group hover:bg-white/5 transition-all duration-500 relative overflow-hidden mt-8 md:mt-12">
-                    <svg class="line-icon" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    <h3 class="text-3xl font-medium mb-4 tracking-tight group-hover:text-red-800 transition-colors">Команда</h3>
-                    <p class="text-gray-400 leading-relaxed font-light font-sans">Определяем, кто реально вовлечен и готов развивать компанию. Находим «пассажиров» и будущих лидеров роста.</p>
-                </div>
-                <div class="p-10 glass-card group hover:bg-white/5 transition-all duration-500 relative overflow-hidden">
-                    <svg class="line-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg>
-                    <h3 class="text-3xl font-medium mb-4 tracking-tight group-hover:text-red-800 transition-colors">Стратегия</h3>
-                    <p class="text-gray-400 leading-relaxed font-light font-sans">Прорабатываем цели собственников вместе с командой, выстраиваем дорожную карту. Команда сама формирует путь решения.</p>
-                </div>
-                <div class="p-10 glass-card group hover:bg-white/5 transition-all duration-500 relative overflow-hidden mt-8 md:mt-12">
-                    <svg class="line-icon" viewBox="0 0 24 24"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42Z"/></svg>
-                    <h3 class="text-3xl font-medium mb-4 tracking-tight group-hover:text-red-800 transition-colors">Компетенции</h3>
-                    <p class="text-gray-400 leading-relaxed font-light font-sans">Оцениваем и развиваем команду. Только через постоянную оценку и обучение люди становятся инструментом роста.</p>
-                </div>
-                <div class="p-10 glass-card group hover:bg-white/5 transition-all duration-500 relative overflow-hidden">
-                    <svg class="line-icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 17h1"/><path d="M9 13h1"/><path d="M9 9h1"/><path d="M14 17h1"/><path d="M14 13h1"/><path d="M14 9h1"/></svg>
-                    <h3 class="text-3xl font-medium mb-4 tracking-tight group-hover:text-red-800 transition-colors">Оцифровка</h3>
-                    <p class="text-gray-400 leading-relaxed font-light font-sans">KPI, процессы, управленческий учёт, отчётность. Всё, что позволяет управлять экономикой через твердые цифры.</p>
-                </div>
-                <div class="p-10 glass-card group hover:bg-white/5 transition-all duration-500 relative overflow-hidden mt-8 md:mt-12">
-                    <svg class="line-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
-                    <h3 class="text-3xl font-medium mb-4 tracking-tight group-hover:text-red-800 transition-colors">Трекинг</h3>
-                    <p class="text-gray-400 leading-relaxed font-light font-sans">Отслеживаем динамику по дорожной карте, управляем изменениями, ищем новые узкие горлышки и точки для инноваций.</p>
-                </div>
-            </div>
-
-            <div class="md:col-span-8 mt-12 p-12 glass-card border-none bg-white/5 text-left reveal">
-                <p class="text-lg text-gray-300 font-light italic font-sans max-w-xl">
-                    Затем цикл запускается заново. Потому что бизнес меняется — и система обновляется вместе с ним.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Block 4: Uslugi (Asymmetrical) -->
-    <section id="services" class="py-20 bg-[#F5F5F7] text-black overflow-hidden relative">
-        <div class="absolute inset-0 pointer-events-none opacity-5">
-            <div class="container mx-auto h-full grid grid-cols-12 gap-0 border-x border-black/10">
-                <div class="col-span-1 border-r border-black/10"></div>
-                <div class="col-span-1 border-r border-black/10"></div>
-                <div class="col-span-1 border-r border-black/10"></div>
-            </div>
-        </div>
+    <main class="relative z-10">
         
-        <div class="container mx-auto px-6 relative z-10 grid md:grid-cols-12 gap-8">
-            <header class="md:col-span-9 reveal mb-16 text-left">
-                <h2 class="text-6xl md:text-8xl font-medium tracking-tight mb-6 italic">Что я делаю</h2>
-                <p class="text-2xl text-gray-500 font-medium font-sans">Системные шаги к управляемому результату</p>
-            </header>
-            
-            <div class="md:col-span-12 grid md:grid-cols-2 gap-8">
-                <!-- Step 1 -->
-                <div class="glass-card-light p-12 relative flex flex-col justify-between min-h-[380px] hover:scale-[1.02] transition-transform duration-500 reveal">
-                    <div class="step-indicator"></div>
-                    <div>
-                        <div class="w-12 h-1 border-t-4 border-red-800 mb-8"></div>
-                        <h3 class="text-4xl font-medium mb-4 tracking-tight">Экспресс-диагностика</h3>
-                        <p class="text-lg text-gray-600 leading-relaxed max-w-md font-normal font-sans">
-                            2–3 часа системных вопросов по всем ключевым блокам бизнеса. Находим 2–3 главных ограничения роста прямо сейчас. Считаем, сколько денег теряет бизнес из-за каждого.
-                        </p>
-                    </div>
-                    <div class="mt-8 flex items-center space-x-4 font-sans">
-                        <span class="px-4 py-1 bg-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full">1 день</span>
-                    </div>
-                </div>
-                <!-- Step 2 -->
-                <div class="glass-card-light p-12 relative flex flex-col justify-between min-h-[380px] hover:scale-[1.02] transition-transform duration-500 reveal delay-100">
-                    <div class="step-indicator"></div>
-                    <div>
-                        <div class="w-12 h-1 border-t-4 border-red-800 mb-8"></div>
-                        <h3 class="text-4xl font-medium mb-4 tracking-tight">Полный аудит бизнеса</h3>
-                        <p class="text-lg text-gray-600 leading-relaxed max-w-md font-normal font-sans">
-                            Глубокий разбор всех блоков. Диагностические интервью с сотрудниками. Собираем цифры, которых нет. Строим управленческую картину целиком.
-                        </p>
-                    </div>
-                    <div class="mt-8 flex items-center space-x-4 font-sans">
-                        <span class="px-4 py-1 bg-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full">3–4 недели</span>
-                    </div>
-                </div>
-                <!-- Step 3 -->
-                <div class="glass-card-light p-12 relative flex flex-col justify-between min-h-[380px] hover:scale-[1.02] transition-transform duration-500 reveal delay-200">
-                    <div class="step-indicator"></div>
-                    <div>
-                        <div class="w-12 h-1 border-t-4 border-red-800 mb-8"></div>
-                        <h3 class="text-4xl font-medium mb-4 tracking-tight">Стратегическая сессия</h3>
-                        <p class="text-lg text-gray-600 leading-relaxed max-w-md font-normal font-sans">
-                            Собираем руководителей вокруг одной цели. Решения вырабатываем вместе с командой. Формируем дорожную карту.
-                        </p>
-                    </div>
-                    <div class="mt-8 flex items-center space-x-4 font-sans">
-                        <span class="px-4 py-1 bg-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full">1–2 дня</span>
-                    </div>
-                </div>
-                <!-- Step 4 -->
-                <div class="glass-card-light p-12 relative flex flex-col justify-between min-h-[380px] hover:scale-[1.02] transition-transform duration-500 reveal delay-300">
-                    <div class="step-indicator"></div>
-                    <div>
-                        <div class="w-12 h-1 border-t-4 border-red-800 mb-8"></div>
-                        <h3 class="text-4xl font-medium mb-4 tracking-tight">Внедрение</h3>
-                        <p class="text-lg text-gray-600 leading-relaxed max-w-md font-normal font-sans">
-                            Трекинг по дорожной карте, управление изменениями, финансовые и операционные инструменты. Собственник видит динамику в цифрах.
-                        </p>
-                    </div>
-                    <div class="mt-8 flex items-center space-x-4 font-sans">
-                        <span class="px-4 py-1 bg-black text-white text-[10px] font-bold uppercase tracking-widest rounded-full">От 3 месяцев</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Focus and Turnover Info -->
-            <div class="md:col-span-12 mt-16 glass-card-light !bg-white p-16 border-none font-sans shadow-none border-l-[10px] border-red-800">
-                <div class="text-left mb-12">
-                    <h4 class="text-xs font-black uppercase tracking-[0.4em] text-red-800 mb-4">С кем я работаю</h4>
-                    <p class="text-4xl font-medium tracking-tight text-neutral-900 serif-font">Собственники, которым важна управленческая ясность</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div class="text-left p-4">
-                        <div class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-2">Ниша</div>
-                        <div class="text-xl font-bold">Производство</div>
-                    </div>
-                    <div class="text-left p-4">
-                        <div class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-2">Ниша</div>
-                        <div class="text-xl font-bold">Ритейл</div>
-                    </div>
-                    <div class="text-left p-4">
-                        <div class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-2">Ниша</div>
-                        <div class="text-xl font-bold">Маркетплейсы</div>
-                    </div>
-                    <div class="text-left p-4">
-                        <div class="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-2">Масштаб</div>
-                        <div class="text-xl font-bold text-red-800">от 15 млн ₽</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Block 5: About Natalia -->
-    <section id="about" class="py-20 relative overflow-hidden">
-        <div class="container mx-auto px-6 grid md:grid-cols-12 gap-20 items-center relative z-10">
-            <div class="md:col-span-5 reveal">
-                <div class="aspect-[3/4] glass-card overflow-hidden grayscale hover:grayscale-0 transition duration-1000 relative !rounded-[4rem]">
-                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1000" 
-                         alt="Наталья Репко в работе" 
-                         class="w-full h-full object-cover opacity-50">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                </div>
-            </div>
-            <div class="md:col-span-7 reveal">
-                <h2 class="text-6xl md:text-8xl font-medium mb-8 tracking-tighter">Наталья Репко</h2>
-                <p class="text-red-800 font-bold mb-10 uppercase tracking-[0.2em] text-xs font-sans">Управляющий партнёр по экономике бизнеса</p>
-                <div class="space-y-8 text-gray-400 leading-relaxed font-light text-xl font-sans max-w-2xl">
-                    <p>24 года практического опыта в производственно-коммерческих компаниях, холдингах и ритейле. Последние 10 лет — исполнительный финансовый директор.</p>
-                    <p>Я прошла через всё: склад, производство, финансы, продажи, маркетинг, закупки, управление товарными запасами, автоматизацию процессов. Я знаю, как устроен бизнес изнутри — на каждом уровне.</p>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-6 mt-16 font-sans">
-                    <div class="p-10 glass-card text-left border-l border-white/10">
-                        <div class="text-5xl font-bold text-white mb-2 serif-font italic">> 100</div>
-                        <div class="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold">Клиентов</div>
-                    </div>
-                    <div class="p-10 glass-card text-left border-l border-white/10">
-                        <div class="text-5xl font-bold text-white mb-2 serif-font italic">2-3х</div>
-                        <div class="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold">Рост прибыли</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Block 6: CTA Section (Asymmetrical) -->
-    <section id="cta" class="py-28 relative">
-        <div class="container mx-auto px-6">
-            <div class="max-w-6xl mx-auto reveal glass-card p-20 bg-white/5 backdrop-blur-3xl !rounded-[4rem] grid md:grid-cols-12 gap-12 items-center overflow-hidden">
-                <div class="md:col-span-8 text-left relative z-10">
-                    <h2 class="text-6xl md:text-8xl font-medium mb-10 tracking-tight leading-tight">Первый шаг — <br><span class="text-gradient-shimmer italic">Экспресс-диагностика</span></h2>
-                    <p class="text-2xl text-gray-400 mb-14 font-light max-w-xl leading-relaxed font-sans">
-                        Покажу, где именно теряются деньги и почему финансовый результат не сходится. <br><br> Ограничение: беру не более 2-х проектов на полное сопровождение в месяц.
+        <!-- BLOCK 1: Hero Section -->
+        <section id="hero" class="min-h-[90vh] flex items-center pt-24 px-6">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <h1 class="text-6xl md:text-[5rem] font-black leading-[1.05] mb-8">
+                        Управляемая <br><span class="holographic-text">экономика бизнеса</span>
+                    </h1>
+                    <p class="text-xl text-gray-400 mb-10 leading-relaxed max-w-xl font-light">
+                        Для собственников, у которых оборот есть, а прибыль не сходится. Диагностика, аудит, стратегия, внедрение. 
+                        Уникальная методология — Цикл Репко. Не консультация с советами, а системная работа с экономикой бизнеса: 
+                        нахожу, где теряются деньги, и выстраиваю управляемую модель под конкретный бизнес.
                     </p>
-                    
-                    <div class="flex flex-col md:flex-row gap-6 items-start font-sans">
-                        <a href="https://t.me/" class="w-full md:w-auto px-16 py-6 bg-red-900 hover:bg-red-800 text-white font-bold tracking-widest uppercase transition-all duration-500 bordeaux-glow btn-round">
+                    <div class="flex flex-col sm:flex-row gap-6">
+                        <a href="https://t.me/" target="_blank" rel="noopener noreferrer" class="btn-primary px-10 py-5 rounded-full text-center">
                             Написать в Telegram
                         </a>
-                        <button class="w-full md:w-auto px-16 py-6 glass-card hover:bg-white hover:text-black transition-all duration-500 tracking-widest uppercase text-sm font-bold btn-round">
-                            Оставить заявку
-                        </button>
+                        <a href="#services" class="px-10 py-5 rounded-full border border-amber-500/40 text-center hover:bg-amber-500/10 transition-all backdrop-blur-sm uppercase text-[0.7rem] font-black tracking-normal">
+                            Услуги
+                        </a>
                     </div>
                 </div>
-                <div class="hidden md:block md:col-span-4 h-full coordinate-grid opacity-10 absolute right-0 top-0 w-1/3"></div>
+                <div class="relative reveal flex justify-center lg:justify-end">
+                    <div class="w-full max-w-lg aspect-[4/5] rounded-3xl overflow-visible glass-card p-3 rotate-1 shadow-2xl">
+                        <div class="w-full h-full bg-neutral-950 flex items-center justify-center relative group overflow-hidden rounded-2xl">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800" alt="Наталья Репко" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-10 left-10">
+                                <p class="text-5xl mb-1 font-bold" style="letter-spacing: -0.04em;">Наталья Репко</p>
+                                <p class="text-amber-500 text-[0.65rem] tracking-tight uppercase font-black">Управляющий партнёр</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <p class="mt-16 text-center text-[10px] text-gray-600 uppercase tracking-[0.5em] font-bold font-sans">Repko Cycle Methodology © 2024</p>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-white/5 text-center font-sans">
-        <p class="text-[10px] text-gray-700 uppercase tracking-[0.5em] font-bold">Designed for High Performance • Natalya Repko</p>
+        <!-- BLOCK 2: Context Setting (Problem) -->
+        <section id="problem" class="py-20 px-6 relative">
+            <div class="max-w-6xl mx-auto text-center reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-10 leading-tight">
+                    Бизнес может работать, расти и выглядеть нормально — и при этом быть экономически неуправляемым.
+                </h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                    <div class="glass-card p-8 rounded-2xl group">
+                        <div class="text-3xl mb-4 holographic-text font-black">≠</div>
+                        <p class="font-bold text-lg text-amber-500 leading-tight uppercase tracking-tighter">Прибыль ≠ оборот</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl group">
+                        <div class="text-3xl mb-4 holographic-text font-black">≠</div>
+                        <p class="font-bold text-lg text-amber-500 leading-tight uppercase tracking-tighter">Учёт ≠ управление</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl group">
+                        <div class="text-3xl mb-4 holographic-text font-black">≠</div>
+                        <p class="font-bold text-lg text-amber-500 leading-tight uppercase tracking-tighter">Рост ≠ здоровье бизнеса</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl group">
+                        <div class="text-3xl mb-4 holographic-text font-black">≠</div>
+                        <p class="font-bold text-lg text-amber-500 leading-tight uppercase tracking-tighter">Команда ≠ система</p>
+                    </div>
+                </div>
+                <p class="text-2xl md:text-3xl text-gray-300 leading-relaxed max-w-4xl mx-auto italic font-light">
+                    Я вижу, где бизнес теряет деньги — даже когда это не очевидно изнутри. Выстраиваю решения вокруг прибыли.
+                </p>
+            </div>
+        </section>
+
+        <!-- BLOCK 3: Methodology (Cycle Repko) -->
+        <section id="cycle" class="py-20 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-5xl md:text-[4rem] font-bold mb-6">Как я работаю — <br><span class="gold-text italic">Цикл Репко</span></h2>
+                    <p class="text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed font-light">
+                        Авторская методология управления бизнесом через экономику и команду. 
+                        Шесть последовательных этапов, которые обновляются по мере роста бизнеса.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
+                    <div class="glass-card p-8 rounded-[2rem] group">
+                        <div class="text-4xl font-bold text-amber-500/10 mb-4 tracking-tighter">01</div>
+                        <h3 class="text-xl font-bold mb-3 holographic-text uppercase tracking-normal text-[0.8rem]">Видение</h3>
+                        <p class="text-gray-400 text-lg font-light leading-relaxed">фиксируем единое понимание собственников: куда идет бизнес и зачем.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-[2rem] group">
+                        <div class="text-4xl font-bold text-amber-500/10 mb-4 tracking-tighter">02</div>
+                        <h3 class="text-xl font-bold mb-3 holographic-text uppercase tracking-normal text-[0.8rem]">Команда</h3>
+                        <p class="text-gray-400 text-lg font-light leading-relaxed">определяем, кто реально вовлечен и готов развивать компанию.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-[2rem] group">
+                        <div class="text-4xl font-bold text-amber-500/10 mb-4 tracking-tighter">03</div>
+                        <h3 class="text-xl font-bold mb-3 holographic-text uppercase tracking-normal text-[0.8rem]">Стратегия</h3>
+                        <p class="text-gray-400 text-lg font-light leading-relaxed">прорабатываем цели и полагания собственников вместе с командой, выстраиваем дорожную карту.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-[2rem] group">
+                        <div class="text-4xl font-bold text-amber-500/10 mb-4 tracking-tighter">04</div>
+                        <h3 class="text-xl font-bold mb-3 holographic-text uppercase tracking-normal text-[0.8rem]">Компетенции</h3>
+                        <p class="text-gray-400 text-lg font-light leading-relaxed">оцениваем и развиваем команду. Только через постоянную оценку и обучение люди становятся инструментом роста.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-[2rem] group">
+                        <div class="text-4xl font-bold text-amber-500/10 mb-4 tracking-tighter">05</div>
+                        <h3 class="text-xl font-bold mb-3 holographic-text uppercase tracking-normal text-[0.8rem]">Оцифровка</h3>
+                        <p class="text-gray-400 text-lg font-light leading-relaxed">KPI, процессы, управленческий учёт, отчётность. Всё, что позволяет управлять экономикой через цифры.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-[2rem] group">
+                        <div class="text-4xl font-bold text-amber-500/10 mb-4 tracking-tighter">06</div>
+                        <h3 class="text-xl font-bold mb-3 holographic-text uppercase tracking-normal text-[0.8rem]">Трекинг</h3>
+                        <p class="text-gray-400 text-lg font-light leading-relaxed">отслеживаем динамику по дорожной карте, управляем изменениями, ищем новые узкие горлышки и точки для инноваций.</p>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center reveal">
+                    <p class="text-2xl text-amber-500 italic mb-6">→ Затем цикл запускается заново. Потому что бизнес меняется — и система обновляется вместе с ним.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOCK 4: Uslugi (Bento Grid) -->
+        <section id="services" class="py-20 px-6">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-5xl md:text-[6rem] font-bold mb-12 reveal">Что я <span class="gold-text italic">делаю</span></h2>
+                
+                <div class="bento-grid reveal">
+                    <div class="glass-card p-8 rounded-3xl col-span-12 lg:col-span-8 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-4xl font-bold mb-3 italic">Шаг 1. Экспресс-диагностика</h3>
+                            <p class="holographic-text text-xl font-black mb-4 tracking-tighter">2–3 часа</p>
+                            <p class="text-gray-400 text-lg leading-relaxed font-light">Системные вопросы по всем ключевым блокам бизнеса. Находим 2–3 главных ограничения роста прямо сейчас. Считаем, сколько денег теряет бизнес из-за каждого.</p>
+                        </div>
+                        <div class="mt-6">
+                            <div class="inline-block border border-amber-500/30 px-6 py-3 rounded-xl text-amber-500 uppercase tracking-tight text-[0.65rem] font-black bg-amber-500/5">Результат: С чего начинать</div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-3xl col-span-12 lg:col-span-4 flex flex-col">
+                        <h3 class="text-2xl font-bold mb-3 italic">Шаг 2. Полный аудит бизнеса</h3>
+                        <p class="holographic-text text-lg font-black mb-4">3–4 недели</p>
+                        <p class="text-gray-400 text-sm leading-relaxed font-light flex-grow">Глубокий разбор всех блоков. Диагностические интервью с сотрудниками. Собираем цифры, которых нет. Строим управленческую картину целиком.</p>
+                        <div class="mt-4">
+                            <div class="text-amber-500 uppercase tracking-tight text-[0.65rem] font-black">Результат: Карта потерь</div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-3xl col-span-12 lg:col-span-4 flex flex-col">
+                        <h3 class="text-2xl font-bold mb-3 italic">Шаг 3. Стратегическая сессия</h3>
+                        <p class="holographic-text text-lg font-black mb-4">1–2 дня</p>
+                        <p class="text-gray-400 text-sm leading-relaxed font-light flex-grow">Собираем руководителей вокруг одной цели. Решения вырабатываем вместе с командой — не спускаем сверху. Формируем дорожную карту.</p>
+                        <div class="mt-4">
+                            <div class="text-amber-500 uppercase tracking-tight text-[0.65rem] font-black">Результат: Дорожная карта</div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-3xl col-span-12 lg:col-span-8 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-4xl font-bold mb-3 italic">Шаг 4. Сопровождение и внедрение</h3>
+                            <p class="holographic-text text-xl font-black mb-4 tracking-tighter">От 3 месяцев</p>
+                            <p class="text-gray-400 text-lg leading-relaxed font-light">Трекинг по дорожной карте, управление изменениями, финансовые и операционные инструменты. Собственник видит динамику в цифрах на каждом этапе.</p>
+                        </div>
+                        <div class="mt-6 text-right">
+                            <div class="inline-block border border-amber-500/30 px-6 py-3 rounded-xl text-amber-500 uppercase tracking-tight text-[0.65rem] font-black bg-amber-500/5">Результат: Собственник видит цифры</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 glass-card p-12 rounded-[4rem] reveal bg-gradient-to-br from-neutral-900 to-black">
+                    <h3 class="text-2xl font-black mb-8 uppercase tracking-normal gold-text text-[0.8rem]">С кем работаю:</h3>
+                    <div class="grid md:grid-cols-3 gap-8 items-center">
+                        <div class="text-3xl italic">Производство</div>
+                        <div class="text-3xl italic">Ритейл</div>
+                        <div class="text-3xl italic">Маркетплейсы</div>
+                    </div>
+                    <div class="mt-8 pt-8 border-t border-amber-500/20 text-right">
+                        <p class="text-gray-400 text-xl font-light leading-relaxed uppercase font-bold" style="letter-spacing: -0.02em;">Собственники с оборотом <span class="holographic-text font-bold text-4xl">от 15 млн рублей</span>, которым важна управленческая ясность.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOCK 5: About Expert (Bento Layout) -->
+        <section id="about" class="py-20 px-6">
+            <div class="max-w-7xl mx-auto bento-grid items-center">
+                <!-- TEXT BLOCK -->
+                <div class="reveal col-span-12 lg:col-span-7">
+                    <h2 class="text-7xl font-bold mb-4 leading-tight">Наталья <br><span class="holographic-text italic">Репко</span></h2>
+                    <p class="text-amber-500 font-black tracking-tight uppercase mb-12 text-[0.65rem]">Управляющий партнёр по экономике бизнеса</p>
+                    
+                    <div class="space-y-6 text-gray-300 text-2xl leading-relaxed font-light mb-8">
+                        <p>24 года практического опыта в производственно-коммерческих компаниях, холдингах и ритейле. Последние 10 лет — исполнительный финансовый директор.</p>
+                        <p>Я прошла через всё: склад, производство, финансы, продажи, маркетинг, закупки, управление товарными запасами, автоматизацию процессов. Я знаю, как устроен бизнес изнутри — на каждом уровне.</p>
+                    </div>
+                </div>
+                
+                <!-- PHOTO BLOCK -->
+                <div class="reveal col-span-12 lg:col-span-5 relative lg:mt-0 lg:pl-10">
+                    <div class="glass-card p-4 rounded-[4rem] relative group overflow-visible w-full max-w-md mx-auto">
+                        <div class="w-full aspect-[4/5] bg-neutral-900 rounded-[3.5rem] overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800" alt="Наталья Репко" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        </div>
+
+                        <!-- METRICS ON PHOTO -->
+                        <div class="absolute top-10 -left-10 w-48 metric-badge reveal delay-200">
+                            <div class="text-4xl font-bold holographic-text" style="letter-spacing: -0.05em;">24</div>
+                            <div class="text-[0.6rem] uppercase tracking-tight font-black text-gray-500 mt-1">года опыта</div>
+                        </div>
+
+                        <div class="absolute top-1/2 -right-10 w-48 metric-badge reveal delay-400">
+                            <div class="text-4xl font-bold holographic-text" style="letter-spacing: -0.05em;">100+</div>
+                            <div class="text-[0.6rem] uppercase tracking-tight font-black text-gray-500 mt-1">клиентов</div>
+                        </div>
+
+                        <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 w-64 metric-badge reveal delay-600 text-center">
+                            <div class="text-4xl font-bold holographic-text" style="letter-spacing: -0.05em;">2-3x</div>
+                            <div class="text-[0.6rem] uppercase tracking-tight font-black text-gray-500 mt-1">роста прибыли KPI</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOCK 6: Final CTA -->
+        <section id="cta" class="py-24 px-6">
+            <div class="max-w-5xl mx-auto text-center reveal">
+                <div class="glass-card p-12 md:p-24 rounded-[5rem] relative overflow-hidden group">
+                    <h2 class="text-5xl md:text-[5rem] font-bold mb-10 leading-tight">Первый шаг — <br><span class="holographic-text italic">Экспресс-диагностика</span></h2>
+                    <p class="text-2xl text-gray-400 mb-16 leading-relaxed max-w-3xl mx-auto font-light text-center">
+                        Экспресс-диагностика — 2–3 часа. Покажу, где именно теряются деньги и почему финансовый результат не сходится.
+                    </p>
+                    
+                    <div class="flex flex-col items-center gap-10">
+                        <a href="https://t.me/" target="_blank" rel="noopener noreferrer" class="btn-primary px-20 py-7 rounded-full text-2xl inline-block shadow-2xl tracking-tight">
+                            Написать в Telegram
+                        </a>
+                        <p class="text-[0.6rem] text-amber-500/50 uppercase tracking-widest font-black text-center">Беру не более 2-х проектов в месяц</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-12 border-t border-amber-500/10 text-center text-gray-700 text-[0.65rem] tracking-tight uppercase font-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <p>© 2026 Наталья Репко. Экономика. Система. Результат.</p>
+        </div>
     </footer>
 
     <script>
-        // Micro-interactions: Mouse Follow & Parallax
-        const mouseGlow = document.getElementById('mouse-glow');
-        const glowParallax = document.getElementById('glow-parallax');
-        const gridParallax = document.getElementById('grid-parallax');
-
-        window.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            const x = (clientX / window.innerWidth - 0.5) * 20;
-            const y = (clientY / window.innerHeight - 0.5) * 20;
-
-            // Update interactive glow position
-            document.documentElement.style.setProperty('--mouse-px', `${clientX}px`);
-            document.documentElement.style.setProperty('--mouse-py', `${clientY}px`);
-
-            // Apply parallax to background elements
-            if (glowParallax) glowParallax.style.transform = `translate(${x}px, ${y}px)`;
-            if (gridParallax) gridParallax.style.transform = `translate(${-x * 0.5}px, ${-y * 0.5}px)`;
+        // 3D Tilt Hover Logic with RequestAnimationFrame for performance
+        let tiltTicking = false;
+        const cards = document.querySelectorAll('.glass-card');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                if (!tiltTicking) {
+                    requestAnimationFrame(() => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const rotateX = (y - centerY) / 30;
+                        const rotateY = (centerX - x) / 30;
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
+                        tiltTicking = false;
+                    });
+                    tiltTicking = true;
+                }
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+            });
         });
 
-        // Reveal on scroll
-        const observerOptions = { threshold: 0.1 };
+        // Advanced Background Engine (High Performance Mode)
+        const canvas = document.getElementById('neural-canvas');
+        const ctx = canvas.getContext('2d', { alpha: true });
+        let particles = [];
+        const particleCount = 60; // Slightly reduced for smoother FPS
+        
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.init();
+            }
+            init() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.z = Math.random() * 1.5 + 0.5;
+                this.vx = (Math.random() - 0.5) * 0.3 * this.z;
+                this.vy = (Math.random() - 0.5) * 0.3 * this.z;
+                this.radius = 1.1 * this.z;
+                this.pulse = Math.random() * Math.PI;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.pulse += 0.015;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                const alpha = (0.1 + Math.abs(Math.sin(this.pulse)) * 0.15);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(166, 138, 43, ${alpha})`;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+        }
+
+        function drawLines() {
+            const maxDistSq = 180 * 180; // Squared distance check (faster)
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distSq = dx * dx + dy * dy;
+                    
+                    if (distSq < maxDistSq) {
+                        const dist = Math.sqrt(distSq); // Only calculate sqrt when strictly necessary
+                        const alpha = (1 - dist / 180) * 0.12;
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(138, 101, 8, ${alpha})`;
+                        ctx.lineWidth = 0.5 * particles[i].z;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            drawLines();
+            requestAnimationFrame(animate);
+        }
+
+        // Reveal Logic (Optimized observer)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Unobserve after reveal to save resources
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+        window.onload = () => {
+            resize();
+            initParticles();
+            animate();
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            window.addEventListener('resize', () => {
+                resize();
+                initParticles();
+            }, { passive: true });
+        };
     </script>
 </body>
 </html>
